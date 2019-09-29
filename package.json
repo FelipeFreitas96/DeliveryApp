@@ -1,0 +1,48 @@
+{
+  "name": "DeliveryApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "babel-plugin-root-import": "^6.4.1",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
+    "react": "16.8.1",
+    "react-native": "0.61.1",
+    "react-native-gesture-handler": "^1.4.1",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-progress": "^3.6.0",
+    "react-native-reanimated": "^1.3.0",
+    "react-native-svg": "^9.9.7",
+    "react-native-svg-transformer": "^0.13.0",
+    "react-navigation": "^4.0.10",
+    "react-navigation-tabs": "^2.5.5",
+    "react-redux": "^7.1.1",
+    "reactotron-react-native": "^4.0.2",
+    "reactotron-redux": "^3.1.2",
+    "reactotron-redux-saga": "^4.2.2",
+    "redux": "^4.0.4",
+    "redux-saga": "^1.1.1",
+    "reduxsauce": "^1.1.0",
+    "seamless-immutable": "^7.1.4",
+    "styled-components": "^4.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/runtime": "^7.5.0",
+    "@react-native-community/eslint-config": "^0.0.3",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "metro-react-native-babel-preset": "^0.51.1",
+    "react-test-renderer": "16.8.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
