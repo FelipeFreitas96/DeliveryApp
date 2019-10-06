@@ -1,64 +1,19 @@
 import React from 'react';
-import {View,Text,StyleSheet,TouchableOpacity} from 'react-native';
-import { createAppContainer, SafeAreaView } from 'react-navigation';
-import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
+import { createAppContainer, createSwitchNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import LinearGradient from 'react-native-linear-gradient';
-
+import BottomBar from '~/component/BottomBar';
 import PackageSVG from '~/images/package.svg';
 import MapSVG from '~/images/map.svg';
 import PlusCircleSVG from '~/images/plus-circle.svg';
 import UserSVG from '~/images/user.svg';
 import SettingsSVG from '~/images/settings.svg';
-import BottomBar from '~/images/bottom_bar_background.svg';
+
+import Add from '~/pages/Add';
 import Main from '~/pages/Main';
-
-const TabBarComponent = (props) => (<BottomTabBar {...props} />);
-const style = StyleSheet.create({
-  insertView: {
-    marginTop: -80,
-    width: 50,
-    height: 40,
-    backgroundColor: 'gray',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 50,
-    transform: [{
-      scaleX: 2,
-      scaleY: 3.2,
-    }]
-    // marginTop: -40,
-    // width: 52,
-    // height: 52,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // borderRadius: 100,
-  },
-});
-
-class TabBar extends React.Component {
-  render() {
-    const {
-       navigation,
-       jumpToIndex,
-       getButtonComponent,
-    } = this.props;
-    const {
-       routes
-    } = navigation.state;
-    return (
-       <SafeAreaView forceInset={{ top: 'always' }}>
-          <View>
-            {routes && routes.map((route, index) => {
-
-              const Tomponent = this.props.getButtonComponent({route});
-
-              return <Tomponent key={index}/>;
-            })}
-          </View>
-        </SafeAreaView>
-      );
-    }
- }
+import Map from '~/pages/Map';
+import User from '~/pages/User';
+import Settings from '~/pages/Settings';
 
 const bottomNavigator = createBottomTabNavigator({
   Main: {
@@ -70,27 +25,32 @@ const bottomNavigator = createBottomTabNavigator({
     }
   },
   Map: {
-    screen: Main,
+    screen: Map,
     navigationOptions: {
       tabBarIcon: ({ focused }) => (
         <MapSVG width={24} height={24} color={focused ? '#2b7ef6' : 'black'} />
       ),
     }
   },
-  Insert: {
+  AddButton: {
     screen: () => null,
     navigationOptions: {
       tabBarIcon: ({ focused }) => (
-        <View/>
-
-        // <LinearGradient start={{x: 0, y: 1}} end={{x: 0, y: 0}} colors={['#39b9fe', '#2d89f7']} style={style.insertView}>
-        //   <PlusCircleSVG width={24} height={24} color={focused ? '#2b7ef6' : 'white'} />
-        // </LinearGradient>
+        <LinearGradient start={{x: 0, y: 1}} end={{x: 0, y: 0}} colors={['#39b9fe', '#2d89f7']}
+          style={{
+            width: 50,
+            height: 50,
+            borderRadius: 100,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          <PlusCircleSVG width={24} height={24} color={focused ? '#2b7ef6' : 'white'} />
+        </LinearGradient>
       ),
     }
   },
   User: {
-    screen: Main,
+    screen: User,
     navigationOptions: {
       tabBarIcon: ({ focused }) => (
         <UserSVG width={24} height={24} color={focused ? '#2b7ef6' : 'black'} />
@@ -98,7 +58,7 @@ const bottomNavigator = createBottomTabNavigator({
     }
   },
   Settings: {
-    screen: Main,
+    screen: Settings,
     navigationOptions: {
       tabBarIcon: ({ focused }) => (
         <SettingsSVG width={24} height={24} color={focused ? '#2b7ef6' : 'black'} />
@@ -107,19 +67,8 @@ const bottomNavigator = createBottomTabNavigator({
   },
 }, {
   defaultNavigationOptions: {
-    headerForceInset: {
-        top: 'never',
-        bottom: 'never',
-    },
     tabBarComponent: props => (
-      <React.Fragment>
-        <BottomTabBar {...props}   />
-        <SafeAreaView style={{ marginTop: -110 }} forceInset={{
-          top: 'never',
-          bottom: 'always', }}>
-          <BottomBar width={null} color={} />
-        </SafeAreaView>
-      </React.Fragment>
+      <BottomBar {...props} />
     ),
     tabBarOptions: {
       showLabel: false,
@@ -127,6 +76,11 @@ const bottomNavigator = createBottomTabNavigator({
   }
 });
 
-const Routes = createAppContainer(bottomNavigator);
+const switchNavigator = createSwitchNavigator({
+  bottomNavigator,
+  Add,
+})
+
+const Routes = createAppContainer(switchNavigator);
 
 export default Routes;

@@ -6,9 +6,20 @@ import PackageSVG from '~/images/package.svg';
 import TruckSVG from '~/images/truck.svg';
 
 const DELIVERY_STATUS = {
-  "01": {progress: 0.3, color: '#2b7ef6', icon: PackageSVG},
-  "18": {progress: 0.4, color: "red", icon: TruckSVG},
-  "10": {progress: 0.5, color: "yellow", icon: TruckSVG},
+  "PO": {
+    "01": {progress: 0.0, color: '#f69e2a', icon: PackageSVG},
+  },
+  "PAR": {
+    "18": {progress: 0.5, color: 'red', icon: PackageSVG},
+    "16": {progress: 0.5, color: '#f69e2a', icon: PackageSVG},
+    "10": {progress: 0.5, color: '#2a7ef6', icon: PackageSVG},
+  },
+  "OEC": {
+    "01": {progress: 0.9, color: '#f69e2a', icon: PackageSVG},
+  },
+  "BDE": {
+    "01": {progress: 1.0, color: '#2af6aa', icon: TruckSVG},
+  },
 };
 
 class OrderItem extends Component {
@@ -16,18 +27,18 @@ class OrderItem extends Component {
     super(props);
     this.state = {
       progress: 0.0,
+      color: 'black',
     };
 
-    for (const obj of props.item.request.evento) {
-      try {
-        const {progress, color} = DELIVERY_STATUS[obj.status];
-        if(this.state.progress < progress) {
-          this.state.progress = progress;
-          this.state.color = color;
-        } else {
-          this.state.color = color;
-        }
-      } catch(err) {}
+    const event = this.getEvento('first');
+    const delivery = DELIVERY_STATUS[event.tipo];
+    if(delivery) {
+      const { progress, color } = delivery[event.status];
+      this.state.progress = progress;
+      this.state.color = color;
+    } else {
+      this.state.progress = 0.5;
+      this.state.color = '#2a7ef6';
     }
   }
 
@@ -62,6 +73,7 @@ class OrderItem extends Component {
   }
 
   getProgress() { return this.state.progress; }
+
   getColor() { return this.state.color; }
 
   getOrderFrom() {
@@ -71,6 +83,9 @@ class OrderItem extends Component {
 
   getDescription() {
     const {descricao} = this.getEvento('first');
+    if(descricao.length > 35)
+      return descricao.substring(0, 35)+"...";
+
     return descricao;
   }
 
@@ -88,7 +103,7 @@ class OrderItem extends Component {
     const {item} = this.props;
     const {diff, bussiness} = this.getTimeDiff(item.request.evento);
     return (
-      <View key={item.key}>
+      <View key={item.key} style={{ backgroundColor: 'white', padding: 5, borderRadius: 5 }}>
         <View style={{flexDirection: 'row', margin: 10}}>
           <View style={{ width: 64, height: 64, justifyContent: 'center', alignItems: 'center' }}>
             <PackageSVG width={32} height={32} color={this.getColor()} />
@@ -99,15 +114,17 @@ class OrderItem extends Component {
             <Text style={{fontFamily: 'Nunito-Regular', color: '#6b7587'}}>({diff} dias corridos / {bussiness} dias úteis)</Text>
           </View>
         </View>
-        <View style={{margin: 10, marginTop: 0}}>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={{flex: 1, fontFamily: 'Nunito-Regular', color: '#6b7587'}}>{this.getOrderFrom()}</Text>
-            <Text style={{fontFamily: 'Nunito-Regular', color: '#6b7587'}}>{this.getOrderTo()}</Text>
+        {this.getProgress() < 1.0 && (
+          <View style={{margin: 10, marginTop: 0}}>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{flex: 1, fontFamily: 'Nunito-Regular', color: '#6b7587'}}>{this.getOrderFrom()}</Text>
+              <Text style={{fontFmily: 'Nunito-Regular', color: '#6b7587'}}>{this.getOrderTo()}</Text>
+            </View>
+            <View style={{ flex: 1 }}>
+              <Progress.Bar style={{backgroundColor: '#6b7587'}} color={'#2a7ef6'} progress={this.getProgress()} borderWidth={0} width={null} />
+            </View>
           </View>
-          <View style={{ flex: 1 }}>
-            <Progress.Bar style={{backgroundColor: '#6b7587'}} color={'#2a7ef6'} progress={this.getProgress()} borderWidth={0} width={null} />
-          </View>
-        </View>
+        )}
       </View>
     );
   }

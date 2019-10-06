@@ -1,5 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="420" height="122.001" viewBox="0 0 420 122.001">
   <defs>
+    <style>
+      .cls-2 {
+        filter: url(#bottom_bar_background);
+      }
+    </style>
     <filter id="bottom_bar_background" x="0" y="0" width="420" height="122.001" filterUnits="userSpaceOnUse">
       <feOffset dy="-9" input="SourceAlpha"/>
       <feGaussianBlur stdDeviation="7.5" result="blur"/>
@@ -8,7 +13,7 @@
       <feComposite in="SourceGraphic"/>
     </filter>
   </defs>
-  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#bottom_bar_background)">
-    <path id="bottom_bar_background-2" data-name="bottom_bar_background" d="M375,140.751H0v-77H134.285a16.311,16.311,0,0,1,8.788,3.6,67.093,67.093,0,0,1,7.837,7.354l.909.943c2.777,2.876,5.179,5.669,7.5,8.37,8.143,9.471,14.574,16.951,28.542,17.128l.491,0c13.02,0,18.9-6.741,26.351-15.276,2.622-3,5.333-6.112,8.651-9.316a91.423,91.423,0,0,1,9.868-8.657c3.5-2.5,6.591-3.8,9.713-4.092.163-.016.329-.034.492-.053H375v77Z" transform="translate(22.5 -32.25)" fill="#fff"/>
+  <g class="cls-2" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <path id="bottom_bar_background-2" data-name="bottom_bar_background" d="M375,140.751H0v-77H134.285a16.311,16.311,0,0,1,8.788,3.6,67.091,67.091,0,0,1,7.837,7.354l.909.943c2.777,2.876,5.179,5.669,7.5,8.37,8.143,9.471,14.574,16.951,28.542,17.128h.491c13.02,0,18.9-6.741,26.351-15.276,2.622-3,5.333-6.112,8.651-9.316a91.422,91.422,0,0,1,9.868-8.657c3.5-2.5,6.591-3.8,9.713-4.092.163-.016.329-.034.492-.053H375v77Z" transform="translate(22.5 -32.25)"/>
   </g>
 </svg>

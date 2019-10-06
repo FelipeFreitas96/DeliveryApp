@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="374.84210205078125" height="76.78947448730469" style=""><rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none" class="" style=""/>
+  <defs>
+    <filter id="bottom_bar_background" x="0" y="0" width="420" height="122.0009994506836" filterUnits="userSpaceOnUse">
+      <feOffset dy="-9" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-color="#d2d2d2" flood-opacity="0.388"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  
+<g class="currentLayer" style=""><title>Layer 1</title><g filter="url(#bottom_bar_background)" id="svg_1" class="">
+    <path id="bottom_bar_background-2" data-name="bottom_bar_background" d="M374.99999994039536,76.99999864196778 H-5.9604642999033786e-8 v-77 H134.28499994039535 a16.311,16.311 0 0 1 8.788,3.6 a67.093,67.093 0 0 1 7.837,7.354 l0.909,0.9430000000000006 c2.777,2.8760000000000003 5.179,5.6690000000000005 7.5,8.37 c8.143,9.471 14.574,16.951 28.542,17.128 l0.4910000000000003,0 c13.02,0 18.9,-6.741 26.351,-15.276 c2.622,-3 5.333,-6.112 8.651,-9.316 a91.423,91.423 0 0 1 9.868,-8.657 c3.5,-2.5 6.591,-3.8 9.713000000000001,-4.092 c0.16300000000000117,-0.01600000000000013 0.3290000000000022,-0.03400000000000011 0.4920000000000003,-0.053000000000000394 H374.99999994039536 v77 z" fill="#fff"/>
+  </g></g></svg>
