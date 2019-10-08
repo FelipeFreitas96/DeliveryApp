@@ -17,12 +17,17 @@ class MainPage extends Component {
     const { navigation } = this.props;
     const code = navigation.getParam('code', '');
     const name = navigation.getParam('name', '');
-    if(code != "" && name != "") {"LB249898686SE"
+    if(code != "" && name != "") {
       this.addProduct({
         id: code,
         name: name,
       });
     }
+
+    this.addProduct({
+      id: "LO071477080CN",
+      name: "SUaMae",
+    })
   }
 
   getProductTabID(request) {

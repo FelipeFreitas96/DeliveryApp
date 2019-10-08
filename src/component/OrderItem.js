@@ -52,10 +52,11 @@ class OrderItem extends Component {
     return count;
   }
 
-  getTimeDiff(event) {
-    const start = moment(event[0].dataPostagem, "DD/MM/YYYY");
-    const end = moment(event[0].data, "DD/MM/YYYY");
-    const diff = moment.duration(end.diff(start)).asDays();
+  getTimeDiff() {
+    const startEvent = this.getEvento('first');
+    const start = moment(startEvent.data, "DD/MM/YYYY");
+    const end = moment(new Date(), "DD/MM/YYYY");
+    const diff = Math.floor(moment.duration(end.diff(start)).asDays());
     const bussiness = diff - this.getWeekendBetweenDates(start, end);
 
     return { diff, bussiness };
@@ -101,7 +102,7 @@ class OrderItem extends Component {
 
   render() {
     const {item} = this.props;
-    const {diff, bussiness} = this.getTimeDiff(item.request.evento);
+    const {diff, bussiness} = this.getTimeDiff();
     return (
       <View key={item.key} style={{ backgroundColor: 'white', padding: 5, borderRadius: 5 }}>
         <View style={{flexDirection: 'row', margin: 10}}>
